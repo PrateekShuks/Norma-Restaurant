@@ -12,7 +12,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
-
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <!-- Site Icons -->
     <link rel="shortcut icon" href="images/logo.jpg" type="image/x-icon">
     <link rel="stylesheet" href="css/bootstrap.min.css">  
@@ -25,7 +25,7 @@
 	<script src="https://use.fontawesome.com/854599bf2b.js"></script>
 </head>
 
-<body>
+<body ng-app="">
 	<!-- Start header -->
 	<header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -77,7 +77,7 @@
 			<div class="row">
 				<div class="col-lg-12 col-sm-12 col-xs-12">
 					<div class="contact-block">
-						<form id="contactForm">
+						<form id="contactForm" name="contactForm">
 							<div class="row">
 								<div class="col-md-6">
 									<h3>Book a table</h3>
@@ -88,12 +88,12 @@
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input id="input_time" required class="time form-control picker__input" placeholder="Choose Time*">
+											<input type="time" min="09:00" max="18:00" class="time form-control picker__input" placeholder="Choose Time*">
 										</div>                                 
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<select class="custom-select d-block form-control" required id="person" >
+											<select class="custom-select d-block form-control" id="person" >
 											  <option disabled selected>Select Person*</option>
 											  <option value="1">1</option>
 											  <option value="2">2</option>
@@ -110,23 +110,27 @@
 									<h3>Contact Details</h3>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" class="form-control" id="name" name="name" placeholder="Your Name*" required>
+											<input type="text" class="form-control" id="name" placeholder="Your Name*" name="FName" ng-model="FName" required>
+											<span ng-show="contactForm.FName.$touched && contactForm.FName.$invalid" class="error-txt">First name is required.</span>
 										</div>                                 
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" placeholder="Your Email" id="email" class="form-control" name="email" required>
+											<input type="email" placeholder="Your Email" id="email" class="form-control" name="email" required>
 										</div> 
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" placeholder="Your Number*" id="phone" class="form-control" name="phone" required>
+											<input type="number" placeholder="Your Number*" id="phone" class="form-control" name="phone" ng-model="phone" required>
+											<span ng-show="contactForm.phone.$touched && contactForm.phone.$invalid" class="error-txt">Phone number is required.</span>
 										</div> 
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="submit-button text-center">
-										<button class="btn btn-common" id="submit" type="submit">Book Table</button>
+										<button class="btn btn-common" id="submit" 
+										ng-disabled="contactForm.FName.$touched && contactForm.FName.$invalid ||  
+										contactForm.phone.$touched && contactForm.phone.$invalid">Book Table</button>
 									</div>
 								</div>
 							</div>            
@@ -155,26 +159,26 @@
 						<div class="carousel-inner mt-4">
 							<div class="carousel-item text-center active">
 								<div class="img-box p-1 rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="images/profile-1.jpg" alt="GR" height="150" style="border: 1px solid black;">
+									<img class="d-block w-100 rounded-circle" src="images/profile-1.jpg" alt="GR" height="150" style="border: 1px solid white;">
 								</div>
-								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Amanda Cerny</strong></h5>
-								<h6 class="text-dark m-0">Youtuber and Vlogger</h6>
+								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Virat Kohli</strong></h5>
+								<h6 class="text-light m-0">Cricketer</h6>
 								<p class="m-0 pt-3"> It’s a great experience. The ambiance is very welcoming and charming. Amazing wines, food and service. Staff are extremely knowledgeable and make great recommendations.</p>
 							</div>
 							<div class="carousel-item text-center">
 								<div class="img-box p-1 rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="images/profile-3.webp" alt="KJ" height="150" style="border: 1px solid black;">
+									<img class="d-block w-100 rounded-circle" src="images/profile-2.jpg" alt="KJ" height="150" style="border: 1px solid white;">
 								</div>
-								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Kylie Jenner</strong></h5>
-								<h6 class="text-dark m-0">Model and Bussinesswoman</h6>
-								<p class="m-0 pt-3">Excellent food. Menu is extensive and seasonal to a particularly high standard. Definitely fine dining.It is worth it and it’s worth checking them out. Highly recommended and I would definetely come here with Stormi.</p>
+								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Anushka Sharma</strong></h5>
+								<h6 class="text-light m-0">Actress</h6>
+								<p class="m-0 pt-3">Excellent food. Menu is extensive and seasonal to a particularly high standard. Definitely fine dining.It is worth it and it’s worth checking them out. Highly recommended and I would definetely come here with Vamika.</p>
 							</div>
 							<div class="carousel-item text-center">
 								<div class="img-box p-1 rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="images/profile-7.jpg" alt="LJ" height="140" style="border: 1px solid black;">
+									<img class="d-block w-100 rounded-circle" src="images/profile-7.jpg" alt="LJ" height="140" style="border: 1px solid white;">
 								</div>
-								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">LeBron James</strong></h5>
-								<h6 class="text-dark m-0">Basketball Player</h6>
+								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Shah Rukh Khan</strong></h5>
+								<h6 class="text-light m-0">Actor</h6>
 								<p class="m-0 pt-3">This cozy restaurant has left the best impressions! Hospitable hosts, delicious dishes, beautiful presentation, wide wine list and wonderful dessert. I recommend to everyone! I would like to come back here again and again.</p>
 							</div>
 						</div>
@@ -192,22 +196,21 @@
 		</div>
 	</div>
 	<!-- End Customer Reviews -->
-
-
+	
 	<!-- Start Contact info -->
 	<div class="contact-info-box">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-4 pb-3">
 					<i  class="fa fa-volume-control-phone" ></i>
-					<div class="overflow-hidden">
+					<div class="overflow-hidden"> 
 						<h4>Phone</h4>
 						<p class="lead">
-							+91 885-014-0762
+							+91 972-777-2528
 						</p>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-4 pb-3">
 					<i class="fa fa-envelope"></i>
 					<div class="overflow-hidden">
 						<h4>Email</h4>
@@ -216,7 +219,7 @@
 						</p>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-4 pb-3">
 					<i class="fa fa-map-marker"></i>
 					<div class="overflow-hidden">
 						<h4>Location</h4>
@@ -248,7 +251,7 @@
 				<div class="col-lg-3 col-md-6">
 					<h3>Contact information</h3>
 					<p >Panvel Street, Kalina, SC, Mumbai, 410206</p>
-					<p>+91 885-014-0762</a></p>
+					<p>+91 972-777-2528</a></p>
 					<p>ps18052000@gmail.com</a></p>
 				</div>
 				<div class="col-lg-3 col-md-6">
